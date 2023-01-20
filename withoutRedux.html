@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리덕스없이</title>
+    <style>
+      .container {
+        border: 5px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="red"></div>
+    <div id="green"></div>
+    <div id="yellow"></div>
+    <script>
+      const red = () => {
+        return (document.querySelector(
+          "#red"
+        ).innerHTML = `<div class='container' id='component_red'>
+        <h1>red</h1>
+        <input type='button' value='fire' onclick="
+        document.querySelector('#component_red').style.backgroundColor = 'red';
+        document.querySelector('#component_green').style.backgroundColor = 'red';
+        document.querySelector('#component_yellow').style.backgroundColor = 'red'"/>
+      </div>`);
+      };
+      const green = () => {
+        return (document.querySelector(
+          "#green"
+        ).innerHTML = `<div class='container' id='component_green'>
+        <h1>green</h1>
+        <input type='button' value='fire' onclick="
+        document.querySelector('#component_red').style.backgroundColor = 'green';
+        document.querySelector('#component_green').style.backgroundColor = 'green';
+        document.querySelector('#component_yellow').style.backgroundColor = 'green'"/>
+      </div>`);
+      };
+      const yellow = () => {
+        return (document.querySelector(
+          "#yellow"
+        ).innerHTML = `<div class='container' id='component_yellow'>
+        <h1>yellow</h1>
+        <input type='button' value='fire' onclick="
+        document.querySelector('#component_red').style.backgroundColor = 'yellow';
+        document.querySelector('#component_green').style.backgroundColor = 'yellow';
+        document.querySelector('#component_yellow').style.backgroundColor = 'yellow'"/>
+      </div>`);
+      };
+      red();
+      green();
+      yellow();
+    </script>
+  </body>
+</html>
