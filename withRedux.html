@@ -5,19 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>리덕스잇이</title>
+    <style>
+      .box {
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
+    <div class="box">box</div>
     <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
     <script>
       // console.log(window.Redux);
       const reducer = (state, action) => {
+        console.log(state, action);
         if (state === undefined) {
           //state 초기화 단계
           return { color: "yellow" };
         }
+        // if (action.type === "CHANGE_COLOR") {
+        //   //state를 직접변경하지 말자(시간여행이 안됨)
+        //   state.color = action.color;
+        // }
+        // return state;
+        if (action.type === "CHANGE_COLOR") {
+          //Object.assign() or 구조분해할당으로 새로운 객체 반환
+          return { ...state, color: action.color };
+        }
       };
       const store = Redux.createStore(reducer);
-      console.log(store.getState());
+      const $box = document.querySelector(".box");
+      const boxColor = () => {
+        return ($box.style.backgroundColor = store.getState().color);
+      };
+      store.subscribe(boxColor);
     </script>
   </body>
 </html>
